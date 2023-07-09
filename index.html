@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="images/animated-cat-image-0215.gif" alt="Animated Cat Image">
+    <div class="todo-app">
+      <div class="header">
+        <h2>To-Do List</h2>
+        <button id="clear-button">Clear</button>
+      </div>
+      <div class="row">
+        <input type="text" id="input-box" placeholder="Add your text" autocomplete="off" pattern="\\S+" title="Please enter a non-empty value">
+        <button onclick="addTask()" id="add-button" style="display: none;">Add</button>
+      </div>
+      <ul id="list-container">
+
+      </ul>
+    </div>
+    <p class="p-count">Task: <span id="counter"></span></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
