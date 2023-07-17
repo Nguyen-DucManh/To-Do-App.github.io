@@ -59,19 +59,18 @@ function renderTask(task) {
   save.dataset.state = "hide";
 
   let arrowUp = document.createElement("div");
-arrowUp.classList.add("arrow", "arrow-up");
-arrowUp.addEventListener("click", function () {
-  swapWithPrevious(li);
-});
-li.appendChild(arrowUp);
+  arrowUp.classList.add("arrow", "arrow-up");
+  arrowUp.addEventListener("click", function () {
+    swapWithPrevious(li);
+  });
+  li.appendChild(arrowUp);
 
-let arrowDown = document.createElement("div");
-arrowDown.classList.add("arrow", "arrow-down");
-arrowDown.addEventListener("click", function () {
-  swapWithNext(li);
-});
-li.appendChild(arrowDown);
-
+  let arrowDown = document.createElement("div");
+  arrowDown.classList.add("arrow", "arrow-down");
+  arrowDown.addEventListener("click", function () {
+    swapWithNext(li);
+  });
+  li.appendChild(arrowDown);
 
   listContainer.appendChild(li);
 
@@ -179,15 +178,17 @@ function clearAllTasks() {
     updateCounter();
   }
 }
+
 function swapWithPrevious(li) {
   const currentIndex = Array.from(listContainer.children).indexOf(li);
   if (currentIndex > 0) {
     const previousIndex = currentIndex - 1;
     swapTasks(currentIndex, previousIndex);
     li.parentNode.insertBefore(li, li.previousElementSibling);
+    updateAndSaveData();
   } else {
-
     listContainer.appendChild(li);
+    updateAndSaveData();
   }
 }
 
@@ -198,19 +199,17 @@ function swapWithNext(li) {
     const nextIndex = currentIndex + 1;
     swapTasks(currentIndex, nextIndex);
     li.parentNode.insertBefore(li.nextElementSibling, li);
+    updateAndSaveData();
   } else {
-
     listContainer.insertBefore(li, listContainer.firstChild);
+    updateAndSaveData();
   }
 }
-
 
 function swapTasks(index1, index2) {
   let temp = tasks[index1];
   tasks[index1] = tasks[index2];
   tasks[index2] = temp;
-
-  updateAndSaveData();
 }
 
 addButton.addEventListener("click", addTask);
@@ -241,3 +240,14 @@ clearButton.addEventListener("click", clearAllTasks);
 
 loadData();
 updateCounter();
+
+// Sử dụng Sortable để thêm chức năng kéo thả
+const sortable = new Sortable(listContainer, {
+  animation: 150,
+  onEnd: function () {
+    const listItems = Array.from(listContainer.children);
+    const sortedTasks = listItems.map((li) => tasks.find((task) => task.li === li));
+    tasks = sortedTasks;
+    updateAndSaveData();
+  }
+});
