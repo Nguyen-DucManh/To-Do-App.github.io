@@ -58,6 +58,22 @@ function renderTask(task) {
   edit.dataset.state = "show";
   save.dataset.state = "hide";
 
+  let arrowUp = document.createElement("div");
+  arrowUp.classList.add("arrow");
+  arrowUp.style.backgroundImage = "url(images/p1.png)";
+  arrowUp.addEventListener("click", function () {
+    swapWithPrevious(li);
+  });
+  li.appendChild(arrowUp);
+
+  let arrowDown = document.createElement("div");
+  arrowDown.classList.add("arrow");
+  arrowDown.style.backgroundImage = "url(images/p2.png)";
+  arrowDown.addEventListener("click", function () {
+    swapWithNext(li);
+  });
+  li.appendChild(arrowDown);
+
   listContainer.appendChild(li);
 
   task.li = li;
@@ -156,13 +172,46 @@ function updateCounter() {
 }
 
 function clearAllTasks() {
-  let confirmation = confirm("Be carefull!!!");
+  let confirmation = confirm("Be careful!!!");
   if (confirmation) {
     tasks = [];
     listContainer.innerHTML = "";
     updateAndSaveData();
     updateCounter();
   }
+}
+function swapWithPrevious(li) {
+  const currentIndex = Array.from(listContainer.children).indexOf(li);
+  if (currentIndex > 0) {
+    const previousIndex = currentIndex - 1;
+    swapTasks(currentIndex, previousIndex);
+    li.parentNode.insertBefore(li, li.previousElementSibling);
+  } else {
+
+    listContainer.appendChild(li);
+  }
+}
+
+function swapWithNext(li) {
+  const currentIndex = Array.from(listContainer.children).indexOf(li);
+  const lastIndex = listContainer.children.length - 1;
+  if (currentIndex < lastIndex) {
+    const nextIndex = currentIndex + 1;
+    swapTasks(currentIndex, nextIndex);
+    li.parentNode.insertBefore(li.nextElementSibling, li);
+  } else {
+
+    listContainer.insertBefore(li, listContainer.firstChild);
+  }
+}
+
+
+function swapTasks(index1, index2) {
+  let temp = tasks[index1];
+  tasks[index1] = tasks[index2];
+  tasks[index2] = temp;
+
+  updateAndSaveData();
 }
 
 addButton.addEventListener("click", addTask);
