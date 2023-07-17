@@ -184,3 +184,98 @@ ul li span:hover {
   text-decoration: underline;
   color: #ff1493;
 }
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.arrow:hover {
+  background-color: #edeef0;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .container {
+    align-items: center;
+  }
+
+  .todo-app {
+    margin: 50px auto;
+    padding: 30px;
+  }
+
+  .header h2 {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 5px;
+  }
+
+  .container img {
+    top: 10px;
+    left: 10px;
+  }
+
+  .todo-app {
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .row {
+    padding-left: 10px;
+  }
+
+  button {
+    padding: 12px 40px;
+    font-size: 14px;
+  }
+
+  ul li {
+    padding: 10px 6px 10px 40px;
+    font-size: 14px;
+  }
+
+  ul li::before {
+    height: 22px;
+    width: 22px;
+    top: 10px;
+    left: 6px;
+  }
+
+  ul li span {
+    right: -18px;
+    top: 14px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .p-count {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .clear-button {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .arrow {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+  }
+}
