@@ -59,20 +59,19 @@ function renderTask(task) {
   save.dataset.state = "hide";
 
   let arrowUp = document.createElement("div");
-  arrowUp.classList.add("arrow");
-  arrowUp.style.backgroundImage = "url(images/p1.png)";
-  arrowUp.addEventListener("click", function () {
-    swapWithPrevious(li);
-  });
-  li.appendChild(arrowUp);
+arrowUp.classList.add("arrow", "arrow-up");
+arrowUp.addEventListener("click", function () {
+  swapWithPrevious(li);
+});
+li.appendChild(arrowUp);
 
-  let arrowDown = document.createElement("div");
-  arrowDown.classList.add("arrow");
-  arrowDown.style.backgroundImage = "url(images/p2.png)";
-  arrowDown.addEventListener("click", function () {
-    swapWithNext(li);
-  });
-  li.appendChild(arrowDown);
+let arrowDown = document.createElement("div");
+arrowDown.classList.add("arrow", "arrow-down");
+arrowDown.addEventListener("click", function () {
+  swapWithNext(li);
+});
+li.appendChild(arrowDown);
+
 
   listContainer.appendChild(li);
 
