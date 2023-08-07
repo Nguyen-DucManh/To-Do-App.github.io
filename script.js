@@ -5,26 +5,55 @@ const counterElement = document.getElementById("counter");
 const clearButton = document.getElementById("clear-button");
 let tasks = [];
 
-function addTask() {
-  const taskText = inputBox.value.trim();
-  if (taskText === "") {
-    return;
+ClassicEditor
+  .create(inputBox, {
+    toolbar: [
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      '|',
+      'numberedList',
+      '|',
+      'undo',
+      'redo'
+    ]
+  })
+  .then(editor => {
+    inputBox.editorInstance = editor;
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+  function addTask() {
+    // Use stripHTML function to remove HTML tags
+    const taskText = stripHTML(inputBox.editorInstance.getData().trim());
+    if (taskText === "") return;
+  
+    let task = {
+      text: taskText,
+      completed: false
+    };
+  
+    tasks.push(task);
+    renderTask(task);
+  
+    inputBox.editorInstance.setData("");
+    inputBox.editorInstance.focus();
+    addButton.style.display = "inline-block"; // Set display property to "inline-block"
+    updateAndSaveData();
+    updateCounter();
   }
+  
+  function stripHTML(html) {
+    let tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  }
+  
+  
 
-  let task = {
-    text: taskText,
-    completed: false
-  };
-
-  tasks.push(task);
-  renderTask(task);
-
-  inputBox.value = "";
-  inputBox.focus();
-  addButton.style.display = "none";
-  updateAndSaveData();
-  updateCounter();
-}
 
 function renderTask(task) {
   let li = document.createElement("li");
