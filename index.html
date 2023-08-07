@@ -4,6 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>To-Do List App</title>
   <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
   <div class="container">
@@ -12,12 +14,16 @@
       <div class="header">
         <h2>To-Do List</h2>
         <button id="clear-button">Clear</button>
+        <button onclick="addTask()" id="add-button"  float: left>Add</button> <!-- Thêm dấu ngoặc kép -->
       </div>
       <div class="row">
-        <input type="text" id="input-box" placeholder="Add your text" autocomplete="off" pattern="\\S+" title="Please enter a non-empty value">
-        <button onclick="addTask()" id="add-button" style="display: none;">Add</button>
+        <!-- Thay đổi đoạn code này -->
+        <textarea id="input-box" placeholder="Add your text" autocomplete="off" pattern="\\S+" title="Please enter a non-empty value"></textarea>
+        <!-- Thêm thuộc tính style vào đoạn code này -->
+        <!-- <button onclick="addTask()" id="add-button"  float: left>Add</button> Thêm dấu ngoặc kép -->
       </div>
-      <ul id="list-container">
+      <!-- Thêm thuộc tính style vào đoạn code này -->
+      <ul id="list-container" style="clear: both;">
 
       </ul>
     </div>
@@ -25,5 +31,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
   <script src="script.js"></script>
+  <!-- Thêm đoạn code này -->
+ 
 </body>
 </html>
