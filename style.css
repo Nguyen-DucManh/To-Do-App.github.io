@@ -30,6 +30,8 @@
   margin: 100px auto;
   padding: 40px 30px;
   border-radius: 10px;
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Add vertical scrolling */
 }
 
 .todo-app h2 {
@@ -48,9 +50,13 @@
   color: #002765;
   margin: 0 auto 0 0;
   flex-grow: 1;
-  text-align: center;
+  text-align: unset;
   display: flex;
-  margin-left: 180px;
+  margin-left: 10px;
+}
+
+ul {
+  overflow: scroll; /* Add overflow property */
 }
 
 .row {
@@ -60,7 +66,9 @@
   background: #edeef0;
   border-radius: 30px;
   padding-left: 20px;
+  overflow: scroll; /* Add overflow property for horizontal scrolling */
 }
+
 
 input {
   flex: 1;
@@ -98,6 +106,10 @@ ul li {
   align-items: center;
 }
 
+.cke_wysiwyg_div {
+  overflow: auto;
+}
+
 ul li input {
   flex: 1;
 }
@@ -120,7 +132,7 @@ ul li button:hover {
   background-color: #ffcc00;
 }
 
-.save {
+save {
   background-color: #00cc00;
 }
 
@@ -214,5 +226,26 @@ ul li span:hover {
 
   .header h2 {
     margin-left: 0;
+  }
+}
+
+/* Default width */
+.ck-editor__editable {
+  width: 100%;
+}
+
+/* Adjust width for smaller screens */
+@media (max-width: 768px) {
+  .ck-editor__editable {
+    width: 80%;
+  }
+}
+
+/* Hide some toolbar buttons on smaller screens */
+@media (max-width: 768px) {
+  .ck-toolbar__item--bold,
+  .ck-toolbar__item--italic,
+  .ck-toolbar__item--link {
+    display: none;
   }
 }
